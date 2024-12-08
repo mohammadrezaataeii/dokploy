@@ -325,7 +325,7 @@ export const templates: TemplateData[] = [
 		description: "Glitchtip is simple, open source error tracking",
 		logo: "glitchtip.png",
 		links: {
-			github: "https://gitlab.com/glitchtip/",
+			github: "https://gitlab.raymand.net/glitchtip/",
 			website: "https://glitchtip.com/",
 			docs: "https://glitchtip.com/documentation",
 		},
