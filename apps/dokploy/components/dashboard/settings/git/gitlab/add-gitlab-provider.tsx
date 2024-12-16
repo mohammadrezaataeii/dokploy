@@ -66,7 +66,7 @@ export const AddGitlabProvider = () => {
 			groupName: "",
 			redirectUri: webhookUrl,
 			name: "",
-			gitlabUrl: "https://gitlab.com",
+			gitlabUrl: "https://gitlab.raymand.net",
 		},
 		resolver: zodResolver(Schema),
 	});
@@ -80,7 +80,7 @@ export const AddGitlabProvider = () => {
 			groupName: "",
 			redirectUri: webhookUrl,
 			name: "",
-			gitlabUrl: "https://gitlab.com",
+			gitlabUrl: "https://gitlab.raymand.net",
 		});
 	}, [form, isOpen]);
 
@@ -92,7 +92,7 @@ export const AddGitlabProvider = () => {
 			authId: auth?.id || "",
 			name: data.name || "",
 			redirectUri: data.redirectUri || "",
-			gitlabUrl: data.gitlabUrl || "https://gitlab.com",
+			gitlabUrl: data.gitlabUrl || "https://gitlab.raymand.net",
 		})
 			.then(async () => {
 				await utils.gitProvider.getAll.invalidate();
@@ -242,7 +242,7 @@ export const AddGitlabProvider = () => {
 										<FormItem>
 											<FormLabel>Gitlab URL</FormLabel>
 											<FormControl>
-												<Input placeholder="https://gitlab.com/" {...field} />
+												<Input placeholder="https://gitlab.raymand.net/" {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
