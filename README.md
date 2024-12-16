@@ -7,7 +7,7 @@
 
 </br>
 <div align="center">
-  <div>Join us on Discord for help, feedback, and discussions!</div>
+  <div>Join us on Discord for help, feedback, and discussions Hoy!</div>
   </br>
   <a href="https://discord.gg/2tBnJ3jDJc">
     <img src="https://discordapp.com/api/guilds/1234073262418563112/widget.png?style=banner2" alt="Discord Shield"/>
