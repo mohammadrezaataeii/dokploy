@@ -3,19 +3,19 @@ import { AlertBlock } from "@/components/shared/alert-block";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { api } from "@/utils/api";
@@ -43,21 +43,21 @@ const Schema = z.object({
 		message: "Application Secret is required",
 	}),
 
-  redirectUri: z.string().min(1, {
-    message: "Redirect URI is required",
-  }),
-  groupName: z.string().optional(),
+	redirectUri: z.string().min(1, {
+		message: "Redirect URI is required",
+	}),
+	groupName: z.string().optional(),
 });
 
 type Schema = z.infer<typeof Schema>;
 
 export const AddGitlabProvider = () => {
-  const utils = api.useUtils();
-  const [isOpen, setIsOpen] = useState(false);
-  const url = useUrl();
-  const { data: auth } = api.auth.get.useQuery();
-  const { mutateAsync, error, isError } = api.gitlab.create.useMutation();
-  const webhookUrl = `${url}/api/providers/gitlab/callback`;
+	const utils = api.useUtils();
+	const [isOpen, setIsOpen] = useState(false);
+	const url = useUrl();
+	const { data: auth } = api.auth.get.useQuery();
+	const { mutateAsync, error, isError } = api.gitlab.create.useMutation();
+	const webhookUrl = `${url}/api/providers/gitlab/callback`;
 
 	const form = useForm<Schema>({
 		defaultValues: {
@@ -104,80 +104,24 @@ export const AddGitlabProvider = () => {
 			});
 	};
 
-  return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button
-          variant="default"
-          className="flex items-center space-x-1 bg-purple-700 text-white hover:bg-purple-600"
-        >
-          <GitlabIcon />
-          <span>GitLab</span>
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-2xl  overflow-y-auto max-h-screen ">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            GitLab Provider <GitlabIcon className="size-5" />
-          </DialogTitle>
-        </DialogHeader>
+	return (
+		<Dialog open={isOpen} onOpenChange={setIsOpen}>
+			<DialogTrigger asChild>
+				<Button
+					variant="default"
+					className="flex items-center space-x-1 bg-purple-700 text-white hover:bg-purple-600"
+				>
+					<GitlabIcon />
+					<span>GitLab</span>
+				</Button>
+			</DialogTrigger>
+			<DialogContent className="sm:max-w-2xl  overflow-y-auto max-h-screen ">
+				<DialogHeader>
+					<DialogTitle className="flex items-center gap-2">
+						GitLab Provider <GitlabIcon className="size-5" />
+					</DialogTitle>
+				</DialogHeader>
 
-        {isError && <AlertBlock type="error">{error?.message}</AlertBlock>}
-        <Form {...form}>
-          <form
-            id="hook-form-add-gitlab"
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="grid w-full gap-1"
-          >
-            <CardContent className="p-0">
-              <div className="flex flex-col gap-4">
-                <p className="text-muted-foreground text-sm">
-                  To integrate your GitLab account, you need to create a new
-                  application in your GitLab settings. Follow these steps:
-                </p>
-                <ol className="list-decimal list-inside text-sm text-muted-foreground">
-                  <li className="flex flex-row gap-2 items-center">
-                    Go to your GitLab profile settings{" "}
-                    <Link
-                      href="https://gitlab.raymand.net/-/profile/applications"
-                      target="_blank"
-                    >
-                      <ExternalLink className="w-fit text-primary size-4" />
-                    </Link>
-                  </li>
-                  <li>Navigate to Applications</li>
-                  <li>
-                    Create a new application with the following details:
-                    <ul className="list-disc list-inside ml-4">
-                      <li>Name: Dokploy</li>
-                      <li>
-                        Redirect URI:{" "}
-                        <span className="text-primary">{webhookUrl}</span>{" "}
-                      </li>
-                      <li>Scopes: api, read_user, read_repository</li>
-                    </ul>
-                  </li>
-                  <li>
-                    After creating, you'll receive an Application ID and Secret,
-                    copy them and paste them below.
-                  </li>
-                </ol>
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Random Name eg(my-personal-account)"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
 				{isError && <AlertBlock type="error">{error?.message}</AlertBlock>}
 				<Form {...form}>
 					<form
@@ -249,23 +193,23 @@ export const AddGitlabProvider = () => {
 									)}
 								/>
 
-                <FormField
-                  control={form.control}
-                  name="redirectUri"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Redirect URI</FormLabel>
-                      <FormControl>
-                        <Input
-                          disabled
-                          placeholder="Random Name eg(my-personal-account)"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+								<FormField
+									control={form.control}
+									name="redirectUri"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Redirect URI</FormLabel>
+											<FormControl>
+												<Input
+													disabled
+													placeholder="Random Name eg(my-personal-account)"
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
 
 								<FormField
 									control={form.control}
